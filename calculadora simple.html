@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Herramientas: Calculadora simple</title>
+    <style>
+        body { font-family: sans-serif; display: flex; gap: 50px; justify-content: center; padding: 20px; background: #f4f4f9; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { background: #007bff; color: white; cursor: pointer; border: none; font-weight: bold; }
+        button:hover { background: #0056b3; }
+        h2 { text-align: center; color: #333; }
+        #resultado-calc, #resultado-conv { font-weight: bold; text-align: center; color: #007bff; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+
+    <!-- CALCULADORA -->
+    <div class="card">
+        <h2>Calculadora</h2>
+        <input type="number" id="n1" placeholder="Número 1">
+        <input type="number" id="n2" placeholder="Número 2">
+        <select id="op">
+            <option value="sum">+</option>
+            <option value="res">-</option>
+            <option value="mul">*</option>
+            <option value="div">/</option>
+        </select>
+        <button onclick="calcular()">Calcular</button>
+        <div id="resultado-calc">0</div>
+    </div>
+    <script>
+        function calcular() {
+            const n1 = parseFloat(document.getElementById('n1').value);
+            const n2 = parseFloat(document.getElementById('n2').value);
+            const op = document.getElementById('op').value;
+            let resultado;
+
+            switch (op) {
+                case 'sum':
+                    resultado = n1 + n2;
+                    break;
+                case 'res':
+                    resultado = n1 - n2;
+                    break;
+                case 'mul':
+                    resultado = n1 * n2;
+                    break;
+                case 'div':
+                    resultado = n2 !== 0 ? n1 / n2 : 'Error: División por cero';
+                    break;
+                default:
+                    resultado = 'Operación no válida';
+            }
+
+            document.getElementById('resultado-calc').textContent = resultado;
+        }
+    </script>
+</body>
+</html>
